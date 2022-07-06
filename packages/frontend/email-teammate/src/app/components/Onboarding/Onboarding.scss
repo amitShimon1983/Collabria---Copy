@@ -1,0 +1,139 @@
+.onboarding-1 {
+   position: absolute;
+   top: 0px;
+   left: 0px;
+   width: 100%;
+   height: 100%;
+   z-index: 2;
+   opacity: 1;
+
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   z-index: 3;
+
+   .circle-container {
+      width: 286px;
+      height: 267px;
+      margin-bottom: 15px;
+      text-align: center;
+      font: normal normal 600 16px/21px Segoe UI;
+      letter-spacing: 0px;
+      color: #212e44;
+      position: relative;
+
+      img {
+         position: absolute;
+         top: 0px;
+         left: 0px;
+         z-index: 1;
+      }
+
+      .text {
+         position: absolute;
+         z-index: 2;
+         width: 100%;
+         height: 100%;
+         padding-top: 94px;
+         text-align: center;
+         .huge-number {
+            font: normal normal 600 65px/86px Segoe UI;
+            letter-spacing: 0px;
+            color: #212e44;
+         }
+      }
+   }
+
+   .explain-text {
+      text-align: center;
+      font: normal normal 600 20px/27px;
+      letter-spacing: 0px;
+      color: #4b5566;
+      margin-bottom: 47px;
+   }
+
+   .lower-buttons {
+      display: flex;
+      flex-direction: column;
+
+      .maybe-later {
+         margin-top: 20px;
+         color: #4b5566;
+         cursor: pointer;
+         text-align: center;
+         bottom: 28px;
+         font-size: 15px;
+         font-weight: 600;
+         text-decoration: underline;
+         line-height: 32px;
+         &:hover {
+            color: rgb(14, 13, 13);
+         }
+      }
+   }
+}
+
+@media screen and (max-height: 500px) {
+   .onboarding-1 {
+      .explain-text {
+         margin-bottom: 28px;
+      }
+
+      .lower-buttons {
+         flex-direction: row;
+         .maybe-later {
+            margin-left: 20px;
+            margin-top: 0px;
+         }
+      }
+   }
+}
+
+.onboarding-2 {
+   .onboarding-2-top {
+      height: 80px;
+      width: 100%;
+      background: transparent linear-gradient(341deg, #9093eb 0%, #3135be 100%) 0% 0% no-repeat
+         padding-box;
+      text-align: center;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+
+      .container {
+         display: flex;
+         flex-direction: row;
+         justify-content: center;
+         margin-top: 35px;
+         .mail-icon {
+            width: 42px;
+            height: 42px;
+            margin-right: 30px;
+         }
+
+         .first-line {
+            font-size: 20px;
+            line-height: 42px;
+            letter-spacing: 0px;
+         }
+      }
+   }
+
+   .onboarding-2-button {
+      margin-bottom: 20px;
+   }
+}
+/* slightly transparent fallback */
+.backdrop-blur {
+   background-color: rgba(255, 255, 255, 0.9);
+}
+
+/* if backdrop support: very transparent and blurred */
+@supports ((-webkit-backdrop-filter: blur(4px)) or (backdrop-filter: blur(4px))) {
+   .backdrop-blur {
+      background-color: rgba(255, 255, 255, 0);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+   }
+}

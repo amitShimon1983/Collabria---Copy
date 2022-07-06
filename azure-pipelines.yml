@@ -1,0 +1,86 @@
+trigger:
+  branches:
+    include:
+      - "master"
+
+resources:
+  - repo: self
+
+variables:
+  dockerRegistryServiceConnection: "2b6e53da-6f86-4679-a478-81894f1fa798"
+  imageRepository: "collabria-server"
+  containerRegistry: "collabriacontainerregistry.azurecr.io"
+  dockerfilePath: "**/Dockerfile"
+  tag: "$(Build.SourceVersion)"
+  DOCKER_BUILDKIT: 1
+  vmImageName: "ubuntu-latest"
+
+stages:
+  - stage: Build
+    displayName: Build and push stage
+    jobs:
+
+      # - job: BuildAzureFunctions
+      #   displayName: Build azure function app
+      #   pool:
+      #     vmImage: $(vmImageName)
+      #   steps:
+      #     - task: FuncToolsInstaller@0
+      #       displayName: 'Install func tools'
+      #       inputs:
+      #         version: 'latest'
+      #     - task: Bash@3
+      #       displayName: 'Compile sources'
+      #       inputs:
+      #         targetType: "inline"
+      #         script: |
+      #           yarn
+      #           yarn serverless:build
+      #     - task: ArchiveFiles@2
+      #       displayName: 'Archive compiled sources'
+      #       inputs:
+      #         rootFolderOrFile: '$(System.DefaultWorkingDirectory)/packages/backend/subscriptions'
+      #         includeRootFolder: false
+      #         archiveFile: '$(System.DefaultWorkingDirectory)/build$(Build.BuildId).zip'
+      #     - task: PublishBuildArtifacts@1
+      #       displayName: 'Publish build artifacts'
+      #       inputs:
+      #         PathtoPublish: '$(System.DefaultWorkingDirectory)/build$(Build.BuildId).zip'
+      #         artifactName: 'drop'
+
+      - job: Build
+        displayName: Build server
+        pool:
+          vmImage: $(vmImageName)
+        steps:
+          - task: Bash@3
+            displayName: 'Run backend unit tests'
+            inputs:
+              targetType: "inline"
+              script: |
+                yarn
+                yarn backend:test
+          - task: Docker@2
+            displayName: Build server docker image
+            inputs:
+              command: build
+              repository: $(imageRepository)
+              containerRegistry: $(dockerRegistryServiceConnection)
+              dockerfile: $(dockerfilePath)
+#              arguments: --no-cache
+              tags: |
+                $(tag)
+                latest
+          - task: Docker@2
+            displayName: Push server docker image to container registry
+            inputs:
+              command: push
+              containerRegistry: $(dockerRegistryServiceConnection)
+              repository: $(imageRepository)
+              tags: |
+                $(tag)
+                latest
+          - powershell: |
+              $ShortVer = "$(Build.SourceVersion)".Substring(0,8)
+              Write-Host "##vso[build.updatebuildnumber]$ShortVer"
+            displayName: 'Update Build Number'

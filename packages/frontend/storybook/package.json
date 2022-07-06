@@ -1,0 +1,68 @@
+{
+  "name": "@harmon.ie/collabria-frontend-storybook",
+  "version": "1.0.0",
+  "description": "Collabria frontend storybook library",
+  "author": "",
+  "private": true,
+  "main": "./src/index.ts",
+  "keywords": [],
+  "license": "ISC",
+  "scripts": {
+    "storybook": "start-storybook -p 6006",
+    "storybook:build": "build-storybook",
+    "storybook:antlr": "./node_modules/.bin/antlr4-tool ./src/components/SearchWithSuggestions/PoolQuery.g4 -o ./src/components/SearchWithSuggestions/ANTLR -l typescript"
+  },
+  "resolutions": {
+    "webpack": "^5.73.0"
+  },
+  "overrides": {
+    "webpack": "^5.73.0"
+  },
+  "dependencies": {
+    "@ckeditor/ckeditor5-react": "^5.0.2",
+    "@fluentui/react": "^8.72.0",
+    "@fluentui/react-icons": "^2.0.153-canary.0",
+    "@fluentui/react-make-styles": "^9.0.0-beta.4",
+    "@uifabric/file-type-icons": "^7.8.9",
+    "@uifabric/styling": "^7.20.2",
+    "@uifabric/theme-samples": "^7.4.27",
+    "@uifabric/variants": "^7.2.37",
+    "antlr4": "4.8.0",
+    "react": "^17",
+    "react-dom": "^17",
+    "react-highlighter": "^0.4.3",
+    "react-virtualized": "^9.22.3",
+    "styled-components": "^5.3.5",
+    "@griffel/react": "^1.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.16.7",
+    "@storybook/addon-actions": "^6.4.9",
+    "@storybook/addon-essentials": "^6.4.9",
+    "@storybook/addon-links": "^6.4.9",
+    "@storybook/react": "^6.4.9",
+    "@types/ckeditor__ckeditor5-core": "^33.0.3",
+    "@types/react": "^17",
+    "@types/react-dom": "^17",
+    "@types/react-highlighter": "^0.3.5",
+    "@types/react-virtualized": "^9.21.21",
+    "@types/styled-components": "^5.1.25",
+    "@typescript-eslint/eslint-plugin": "^4.9.1",
+    "@typescript-eslint/parser": "^4.9.1",
+    "@welldone-software/eslint-plugin": "^0.4.4",
+    "@types/copy-webpack-plugin": "^8.0.0",
+    "clean-webpack-plugin": "^3.0.0",
+    "copy-webpack-plugin": "^8.1.1",
+    "antlr4-tool": "^1.1.1",
+    "babel-loader": "8.1.0",
+    "eslint": "^7.12.1",
+    "eslint-config-prettier": "^7.0.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-react": "^7.21.5",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "tsconfig-paths-webpack-plugin": "^3.5.2",
+    "typescript": "4.3.5",
+    "webpack": "^5.73.0"
+  }
+}

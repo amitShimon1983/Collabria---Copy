@@ -1,0 +1,32 @@
+{
+  "extends": "../../../tsconfig.json",
+  "compilerOptions": {
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "rootDirs": [
+      "src",
+      "stories"
+    ],
+    "noFallthroughCasesInSwitch": true,
+    "module": "esnext",
+    "jsx": "react-jsx",
+    "baseUrl": "./",
+    "paths": {
+      "~/*": [
+        "./src/*"
+      ],
+      "@harmon.ie/collabria-frontend-storybook": [
+        "../../storybook/src"
+      ],
+      "@harmon.ie/collabria-frontend-shared": [
+        "../../shared/src"
+      ]
+    }
+  },
+  "include": [
+    "src"
+  ]
+}

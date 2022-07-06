@@ -1,0 +1,10 @@
+{
+  "name": "@harmon.ie/collabria-frontend-ckeditor",
+  "version": "1.0.0",
+  "description": "Collabria frontend ckeditor library",
+  "author": "",
+  "private": true,
+  "main": "./build/ckeditor.js",
+  "keywords": [],
+  "license": "ISC"
+}

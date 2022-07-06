@@ -1,0 +1,44 @@
+.modal-dialog {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+
+   .modal-close {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+   }
+
+   .modal-loading {
+      margin: 0;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      -ms-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+   }
+
+   .modal-text {
+      margin-top: 70px;
+   }
+
+   .modal-title {
+      position: absolute;
+      top: 10px;
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+   .modal-buttons {
+      position: absolute;
+      display: flex;
+      justify-content: flex-end;
+      right: 15px;
+      bottom: 15px;
+      width: 100%;
+
+      .modal-yes {
+         margin-left: 12px;
+      }
+   }
+}

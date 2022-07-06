@@ -1,0 +1,66 @@
+{
+  "name": "@harmon.ie/collabria",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "workspaces": {
+    "packages": [
+      "packages/*/*"
+    ],
+    "nohoist": [
+      "@harmon.ie/collabria-backend-subscriptions",
+      "**/@harmon.ie/collabria-backend-subscriptions/**"
+    ]
+  },
+  "scripts": {
+    "nuke": "find . -name 'node_modules' -type d -prune -exec rm -rf '{}' +",
+    "nuke-r": "rimraf node_modules && rimraf ./packages/*/node_modules && rimraf ./packages/*/*/node_modules",
+    "storybook": "yarn workspace @harmon.ie/collabria-frontend-storybook storybook",
+    "storybook:build": "yarn workspace @harmon.ie/collabria-frontend-storybook storybook:build",
+    "storybook:antrl": "yarn workspace @harmon.ie/collabria-frontend-storybook storybook:antrl",
+    "serverless:build": "yarn workspace @harmon.ie/collabria-backend-subscriptions build:production",
+    "frontend:start": "yarn workspace @harmon.ie/collabria-frontend dev",
+    "frontend:build": "yarn workspace @harmon.ie/collabria-frontend build",
+    "email-teammate:build": "yarn workspace @harmon.ie/collabria-frontend-email-teammate build",
+    "frontend:preview": "yarn workspace @harmon.ie/collabria-frontend preview",
+    "backend:start": "yarn workspace @harmon.ie/collabria-backend-server start",
+    "backend:serve": "yarn workspace @harmon.ie/collabria-backend-server serve",
+    "backend:generate": "yarn workspace @harmon.ie/collabria-backend-server generate",
+    "backend:test": "yarn workspace @harmon.ie/collabria-backend-server test",
+    "infrastructure:deploy-general": "yarn workspace @harmon.ie/collabria-backend-infrastructure deploy-general",
+    "infrastructure:deploy-stage": "yarn workspace @harmon.ie/collabria-backend-infrastructure deploy-stage",
+    "lint": "eslint packages/**/*.ts*"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix"
+    ]
+  },
+  "lint-prepush": {
+    "verbose": true,
+    "tasks": {
+      "!(*generated)/*.{js,jsx,ts,tsx}": [
+        "eslint --max-warnings 0"
+      ]
+    }
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": "lint-prepush"
+    }
+  },
+  "resolutions": {
+    "typescript": "4.3.5",
+    "@types/react": "17.0.14",
+    "esbuild": "0.14.44",
+    "@types/react-dom": "17.0.14",
+    "react-virtualized": "git+https://git@github.com/remorses/react-virtualized-fixed-import.git#9.22.3"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3"
+  }
+}
